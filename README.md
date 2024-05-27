@@ -1,3 +1,3 @@
 # github-action-practice
 
-test
+test2
