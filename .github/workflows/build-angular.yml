@@ -1,0 +1,27 @@
+name: Build Angular App # This is the name of the workflow. It will be displayed in the Actions tab of the repository.
+
+
+on: # This is the event that triggers the workflow.
+  push: # This workflow will be triggered when a push event occurs.
+    branches: [ main ] # This workflow will be triggered only when the push event occurs in the main branch.
+  pull_request: # This workflow will be triggered when a pull request event occurs.
+    branches: [ main ]  # This workflow will be triggered only when the pull request event occurs in the main branch.
+
+jobs:
+  build-angular: # This is the name of the job.
+    runs-on: ubuntu-latest # This is the runner that the job will run on. In this case, it is an Ubuntu runner.
+
+    steps:
+      # Search `setup node js` in the Marketplace and chose `Setup Node.js environment`.
+      - uses: actions/checkout@v4
+
+      - name: Setup Nodes JS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+      # This step is to install the dependencies of the project.
+      - name: Install dependencies
+        run : npm install # If there are multi line to do this step we can use  `|` to switch line.
+      # This step is to build the project.
+      - name: Build
+        run: npm run build
